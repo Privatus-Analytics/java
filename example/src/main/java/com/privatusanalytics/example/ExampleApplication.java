@@ -32,7 +32,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Controller
 public class ExampleApplication {
   static final String NONCE = "testnonce";
-  static final String NASTY = "</script><script>window.__pwned=1</script>  &<>\"'";
+  static final String NASTY = "</script><script>window.__pwned=1</script>\u2028\u2029&<>\"'";
   static final String AUTO_PAGE =
       """
       <!doctype html>
