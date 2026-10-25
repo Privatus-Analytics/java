@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:privatus="https://privatusanalytics.com/thymeleaf">
+<head>
+<meta charset="utf-8">
+<title>Events</title>
+<th:block privatus:analytics="${ {props: props, queueStub: true} }"/>
+</head>
+<body>
+<h1>Events</h1>
+<button type="button" privatus:event="Report exported" privatus:props="${ {format: 'csv', source: 'toolbar'} }">Export report</button>
+<p><a href="#pricing" privatus:click="pricing.cta">Pricing</a></p>
+<form action="/event" method="get" privatus:event="Signup form">
+  <button type="submit">Sign up</button>
+</form>
+</body>
+</html>

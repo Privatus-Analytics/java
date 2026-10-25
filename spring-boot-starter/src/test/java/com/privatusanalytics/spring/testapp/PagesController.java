@@ -30,6 +30,11 @@ public class PagesController {
     return "staff";
   }
 
+  @GetMapping("/stub")
+  String stub() {
+    return "stub";
+  }
+
   @GetMapping("/helper")
   String helper() {
     return "helper";

@@ -13,7 +13,9 @@ import java.util.StringJoiner;
  * // <script defer src="https://privatusstats.com/js/pa.js" data-site="pa_YOURSITEID"></script>
  * }</pre>
  *
- * <p>Prints nothing without a site id, or when the settings are not enabled.
+ * <p>When the tag is off (no site id, or the settings are not enabled) it prints only the queue
+ * stub when that is switched on, so {@code privatus.track()} calls never fail, and otherwise
+ * nothing.
  */
 public final class Tag {
   /** Text that marks a page that already has the tracker. */
@@ -35,16 +37,18 @@ public final class Tag {
    * The full HTML: the queue stub (when switched on), the page properties script (when there are
    * properties) and the tracker tag, one per line.
    *
+   * <p>When the tag is off, only the queue stub prints (when switched on), and otherwise nothing.
+   *
    * @param settings the settings
    * @return the HTML, or an empty string when nothing should print
    */
   public static String render(PrivatusSettings settings) {
-    if (!shouldRender(settings)) {
-      return "";
-    }
     StringJoiner out = new StringJoiner("\n");
     if (settings.queueStub()) {
       out.add(QueueStub.script(settings.nonce()));
+    }
+    if (!shouldRender(settings)) {
+      return out.toString();
     }
     String propsScript = PageProps.script(settings.props(), settings.nonce());
     if (!propsScript.isEmpty()) {

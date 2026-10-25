@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Changed: with the queue stub on, a tag that is off (outside the `prod` profile, `enabled=false` or no site
+  id) now prints the queue stub and nothing else, so `privatus.track(...)` calls in your own JavaScript never
+  fail. Before, it printed nothing. With the queue stub off it still prints nothing. Page props providers are
+  not called when the tag is off, and the filter still adds nothing.
+- Added `example/`, a small Spring Boot and Thymeleaf app for the conformance tests.
+
 ## 1.0.0 - 2026-10-25
 
 - Initial release.

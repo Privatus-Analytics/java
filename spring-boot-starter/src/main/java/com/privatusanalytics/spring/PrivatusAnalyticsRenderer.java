@@ -62,6 +62,11 @@ public class PrivatusAnalyticsRenderer {
    * @return the settings
    */
   public PrivatusSettings settings(HttpServletRequest request, Map<?, ?> overrides) {
+    return settings(request, overrides, true);
+  }
+
+  private PrivatusSettings settings(
+      HttpServletRequest request, Map<?, ?> overrides, boolean withProviders) {
     PrivatusSettings.Builder builder = settings.toBuilder();
     if (request != null) {
       if (nonceAttribute != null && !nonceAttribute.isBlank()) {
@@ -70,7 +75,8 @@ public class PrivatusAnalyticsRenderer {
           builder.nonce(nonce.toString());
         }
       }
-      for (PrivatusPagePropsProvider provider : propsProviders) {
+      for (PrivatusPagePropsProvider provider :
+          withProviders ? propsProviders : List.<PrivatusPagePropsProvider>of()) {
         Map<String, ?> props = provider.pageProps(request);
         if (props != null) {
           builder.addProps(new LinkedHashMap<>(props));
@@ -93,13 +99,17 @@ public class PrivatusAnalyticsRenderer {
   /**
    * The tag for this request with per-call overrides.
    *
+   * <p>When the tag is off (no site id, or not enabled) it prints only the queue stub when that is
+   * switched on, and otherwise nothing. Your page props providers are not called then.
+   *
    * @param request the current request, may be null
    * @param overrides per-call settings, may be null
    * @return the HTML, or an empty string when nothing should print
    */
   public String tag(HttpServletRequest request, Map<?, ?> overrides) {
-    if (!isEnabled() && (overrides == null || overrides.isEmpty())) {
-      return "";
+    PrivatusSettings withoutProviders = settings(request, overrides, false);
+    if (!Tag.shouldRender(withoutProviders)) {
+      return Tag.render(withoutProviders);
     }
     return Tag.render(settings(request, overrides));
   }

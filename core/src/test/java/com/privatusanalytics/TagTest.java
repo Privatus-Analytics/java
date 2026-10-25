@@ -36,6 +36,44 @@ class TagTest {
   }
 
   @Test
+  void offWithTheQueueStubPrintsOnlyTheStub() {
+    String stub = "<script nonce=\"abc\">" + QueueStub.CODE + "</script>";
+    assertEquals(
+        stub,
+        Tag.render(
+            base()
+                .enabled(false)
+                .queueStub(true)
+                .nonce("abc")
+                .props(Map.of("plan", "pro"))
+                .build()));
+    assertEquals(
+        "<script>" + QueueStub.CODE + "</script>",
+        Tag.render(base().enabled(null).environment("development").queueStub(true).build()));
+  }
+
+  @Test
+  void offWithoutTheQueueStubPrintsNothing() {
+    assertEquals(
+        "",
+        Tag.render(
+            base()
+                .enabled(false)
+                .queueStub(false)
+                .nonce("abc")
+                .props(Map.of("plan", "pro"))
+                .build()));
+  }
+
+  @Test
+  void noSiteIdWithTheQueueStubPrintsOnlyTheStub() {
+    assertEquals(
+        "<script nonce=\"abc\">" + QueueStub.CODE + "</script>",
+        Tag.render(
+            base().siteId(null).queueStub(true).nonce("abc").props(Map.of("plan", "pro")).build()));
+  }
+
+  @Test
   void addsModulesAndExclusions() {
     String tag =
         Tag.render(
@@ -144,8 +182,9 @@ class TagTest {
   }
 
   @Test
-  void disabledPrintsNoStubOrPropsEither() {
+  void disabledPrintsNoPropsEvenWithTheStub() {
     assertEquals(
-        "", Tag.render(base().enabled(false).queueStub(true).props(Map.of("plan", "pro")).build()));
+        "<script>" + QueueStub.CODE + "</script>",
+        Tag.render(base().enabled(false).queueStub(true).props(Map.of("plan", "pro")).build()));
   }
 }

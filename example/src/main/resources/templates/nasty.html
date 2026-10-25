@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:privatus="https://privatusanalytics.com/thymeleaf">
+<head>
+<meta charset="utf-8">
+<title>Nasty</title>
+<th:block privatus:analytics="${ {props: props, queueStub: true} }"/>
+</head>
+<body>
+<h1>Nasty values</h1>
+<button type="button" privatus:event="Nasty value" privatus:props="${ {nasty: nasty} }">Nasty</button>
+</body>
+</html>
