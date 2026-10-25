@@ -1,0 +1,15 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:privatus="https://privatusanalytics.com/thymeleaf">
+  <head>
+    <title>Home</title>
+    <th:block privatus:analytics/>
+  </head>
+  <body>
+    <button id="export" type="button" privatus:event="Export CSV" privatus:props="${ {format:'csv', source:'toolbar'} }">Export</button>
+    <form id="signup" method="post" action="/signup" privatus:event="Signup" privatus:props="${ {plan:'pro', seats:3} }"><button>Go</button></form>
+    <a id="cta" href="/pricing" privatus:click="pricing.cta">Pricing</a>
+    <a id="bad" href="/x" privatus:click="bad name">Bad</a>
+    <span id="stray" privatus:props="${ {a:'b'} }">Stray</span>
+    <button id="dynamic" privatus:event="${eventName}">Dynamic</button>
+  </body>
+</html>
