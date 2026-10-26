@@ -1,18 +1,46 @@
 # Privatus Analytics for Java
 
-Adds the cookieless [Privatus Analytics](https://privatusanalytics.com)
-tracking script to your Java web app. The Spring Boot starter gives you a
-Thymeleaf dialect, a helper for JSP and FreeMarker, and an optional filter that
-puts the script in the `<head>` for you.
+**Simple, private website analytics for your Java web app.** No cookies, honest
+numbers, and a dashboard you understand in seconds.
 
-Privatus Analytics counts visits, sources, pages and conversions without
-cookies, local storage or fingerprinting, so analytics does not need a consent
-banner by itself. Check with your own counsel for your country.
+## Why Privatus Analytics
 
-The library only prints the browser script and some HTML attributes. It never
-sends events from your server, sets no cookies, and never reads IP addresses or
-browser details. You need a Privatus Analytics account to see reports, and
-there is a free plan. Sign up at https://privatusanalytics.com.
+**Google Analytics is slow, confusing and hungry for data.** It sends what your
+visitors do to Google. In many countries it means showing a cookie pop-up (the
+box that asks visitors to accept cookies), and many people click "reject", so
+you never see them. Bots pad the numbers that are left.
+
+**Privatus Analytics fixes that.** It counts visits to your Java web app without
+cookies and never stores IP addresses. Bots are filtered out before they are
+counted. Your data is never sold or shared.
+
+What you get:
+
+- **A dashboard you understand in seconds.** Visitors, top pages and where
+  people came from, all on one screen.
+- **No cookie pop-up needed for our analytics.** We set no cookies and store no
+  personal data. Laws differ by country, so check your own legal advice.
+- **Honest numbers.** Known bots and fake traffic are left out on every plan.
+- **A fast app.** The tracking script is about 3 KB, tiny next to most tracking
+  tags.
+- **Data you own.** We never sell it or show you ads, and you can pull it out
+  any time through the API.
+
+**Start free.** The Free plan has 10,000 events a month and 3 sites, with no
+card. Every new account also gets 14 days of Pro free, with no card. [Create
+your account](https://privatusanalytics.com).
+
+## What this package does
+
+- The Spring Boot starter gives you a Thymeleaf dialect, a helper for JSP and
+  FreeMarker, and an optional filter that puts the Privatus Analytics script in
+  the `<head>` for you.
+- Only prints the browser script and some HTML attributes. It never sends events
+  from your server and sets no cookies.
+- Never reads IP addresses or browser details.
+
+You need a Privatus Analytics account to see reports, and there is a free plan.
+Sign up at https://privatusanalytics.com.
 
 There are two packages:
 
@@ -137,7 +165,7 @@ privatus.analytics.auto-inject=true
 
 It adds the tag just before `</head>` in uncompressed `text/html` responses
 with status 200. It skips Ajax (background) requests, pages without a
-`<head>`, and pages that already have the tag. Responses that carry a
+`<head>`, and pages that already have the tag. Responses that have a
 `Content-Encoding` header are left alone. Compression set with
 `server.compression.enabled` happens after the filter, so it works with it.
 Other responses stream through untouched.
@@ -225,7 +253,7 @@ tag only for other people:
 
 ## Product analytics: see which features people use
 
-Privatus can show which buttons people press, which forms they send, and how
+Privatus Analytics can show which buttons people press, which forms they send, and how
 that differs by plan. These helpers print plain HTML, so they print in every
 profile. That keeps your development and production pages the same. The
 tracker only sends anything where the tag is on.
@@ -289,7 +317,7 @@ split any report by them. Good ones are plan, role, app version, feature flags
 and account size.
 
 **Never put names, emails, user ids or anything else that points to one person
-in page properties.** Privatus counts visitors without any id. Put groups
+in page properties.** Privatus Analytics counts visitors without any id. Put groups
 (plan, role), not people. Emails and long ids are also removed by the server.
 
 Set the same properties for every page in your settings:
