@@ -20,6 +20,13 @@
     server.</description>
   <url>https://privatusanalytics.com</url>
 
+  <scm>
+    <connection>scm:git:https://github.com/Privatus-Analytics/java.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Privatus-Analytics/java.git</developerConnection>
+    <url>https://github.com/Privatus-Analytics/java</url>
+    <tag>v1.0.0</tag>
+  </scm>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
