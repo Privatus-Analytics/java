@@ -7,7 +7,7 @@
   <parent>
     <groupId>com.privatusanalytics</groupId>
     <artifactId>privatus-analytics-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <artifactId>privatus-analytics-spring-boot-starter</artifactId>
@@ -24,7 +24,7 @@
     <connection>scm:git:https://github.com/Privatus-Analytics/java.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Privatus-Analytics/java.git</developerConnection>
     <url>https://github.com/Privatus-Analytics/java</url>
-    <tag>v1.0.0</tag>
+    <tag>v1.0.1</tag>
   </scm>
 
   <dependencyManagement>

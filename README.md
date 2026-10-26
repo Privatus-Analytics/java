@@ -59,14 +59,14 @@ Maven:
 <dependency>
   <groupId>com.privatusanalytics</groupId>
   <artifactId>privatus-analytics-spring-boot-starter</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
 Gradle:
 
 ```groovy
-implementation "com.privatusanalytics:privatus-analytics-spring-boot-starter:1.0.0"
+implementation "com.privatusanalytics:privatus-analytics-spring-boot-starter:1.0.1"
 ```
 
 For the full setup guide and every tracker option, see the [Privatus Analytics
